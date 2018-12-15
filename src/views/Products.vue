@@ -1,34 +1,34 @@
 <template>
   <div>
-    <h1>Categories List</h1>
-    <b-table striped hover :items="categories" :fields="fields" :per-page = "pageSize" :current-page = "pageIndex"></b-table>
-    <b-pagination size="md" :total-rows="categories.length" v-model="pageIndex" :per-page="pageSize">
+    <h1>Products List</h1>
+    <b-table striped hover :items="products" :fields="fields" :per-page = "pageSize" :current-page = "pageIndex"></b-table>
+    <b-pagination size="md" :total-rows="products.length" v-model="pageIndex" :per-page="pageSize">
     </b-pagination>
   </div>
 </template>
 <script>
 import axios from 'axios'
 export default {
-  name: 'categories',
+  name: 'products',
   
   data(){
       return{
           message:'project2',
-          categories: [],
+          products: [],
           pageSize: 10,
           pageIndex: 1,
           fields: [{
-            key:'category_id',
+            key:'product_id',
             sortable : true,
             variant: 'Secondary'
           },
           {
-            key:'category_name',
+            key:'product_name',
             sortable : true,
             variant: 'Secondary'
           },
           {
-            key:'description',
+            key:'unit_price',
             sortable : true,
             variant: 'Secondary'
           }]
@@ -38,10 +38,10 @@ export default {
   mounted(){
       var instance = this
       axios
-      .get('https://finalfull2018.herokuapp.com/api/categories')
+      .get('https://enigmatic-harbor-83821.herokuapp.com/api/products')
       .then(function(response){
           console.log(response.data)
-          instance.categories = response.data.data
+          instance.products = response.data.data
       })
     }
 }
